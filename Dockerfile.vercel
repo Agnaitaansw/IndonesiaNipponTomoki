@@ -55,4 +55,4 @@ RUN mkdir -p storage/framework/cache \
 
 RUN chmod -R 775 storage bootstrap/cache
 
- CMD ["sh", "-c", "php artisan about; frankenphp php-server -r public/ --listen :${PORT:-80}"]
+CMD ["sh", "-c", "php artisan about && exec frankenphp php-server -r public/ --listen :${PORT:-80}"]
