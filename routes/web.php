@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+|--------------------------------------------------------------------------
+| Web Routes — Nippon Tomoki Indonesia
+|--------------------------------------------------------------------------
+| Semua route halaman utama LPK: Beranda, Tentang Kami, Layanan, Kontak.
+*/
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/', [Controller::class, 'beranda'])->name('beranda');
+Route::get('/tentang-kami', [Controller::class, 'tentangKami'])->name('tentang-kami');
+Route::get('/layanan', [Controller::class, 'layanan'])->name('layanan');
+Route::get('/kontak', [Controller::class, 'kontak'])->name('kontak');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-require __DIR__.'/auth.php';
+// Endpoint opsional: redirect tombol "Konsultasi Gratis" ke WhatsApp
+// lewat server (berguna kalau nanti mau melacak klik / ganti nomor
+// tanpa harus mengubah blade).
+Route::get('/konsultasi-gratis', [Controller::class, 'konsultasiGratis'])->name('konsultasi-gratis');
