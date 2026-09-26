@@ -4,14 +4,7 @@
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.9.0",
-            "includeFiles": [
-                "vendor/**",
-                "storage/**",
-                "bootstrap/cache/**",
-                "public/**",
-                "resources/**",
-                ".env"
-            ]
+            "includeFiles": "vendor/**"
         }
     },
     "routes": [
